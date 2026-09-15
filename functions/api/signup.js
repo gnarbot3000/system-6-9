@@ -1,9 +1,6 @@
 /**
- * System 6.9 waitlist signup.
- * Forwards to FormSubmit → joel.hageman@gmail.com (first submit needs email confirm).
+ * System 6.9 waitlist — stores emails in Cloudflare KV (SYSTEM69_WAITLIST).
  */
-const DEST = "joel.hageman@gmail.com";
-
 function json(status, body) {
   return new Response(JSON.stringify(body), {
     status,
@@ -27,6 +24,11 @@ export async function onRequestOptions() {
 }
 
 export async function onRequestPost(context) {
+  const kv = context.env.SYSTEM69_WAITLIST;
+  if (!kv) {
+    return json(500, { error: "Waitlist store not configured." });
+  }
+
   let payload;
   try {
     payload = await context.request.json();
@@ -43,29 +45,19 @@ export async function onRequestPost(context) {
     return json(400, { error: "Email too long." });
   }
 
-  const form = new FormData();
-  form.set("email", email);
-  form.set("source", source || "system69");
-  form.set("_subject", "System 6.9 — more info signup");
-  form.set("_template", "table");
-  form.set("_captcha", "false");
+  const key = `email:${email}`;
+  const existing = await kv.get(key);
+  const record = {
+    email,
+    source: source || "unknown",
+    at: new Date().toISOString(),
+    updated: Boolean(existing),
+  };
+  await kv.put(key, JSON.stringify(record));
 
-  try {
-    const res = await fetch(`https://formsubmit.co/ajax/${DEST}`, {
-      method: "POST",
-      headers: { Accept: "application/json" },
-      body: form,
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
-      return json(502, { error: "Could not save signup. Try again later." });
-    }
-    // FormSubmit returns success even when destination still needs activation
-    return json(200, {
-      message: "You’re on the list. We’ll be in touch.",
-      detail: data?.success || data?.message || null,
-    });
-  } catch {
-    return json(502, { error: "Could not save signup. Try again later." });
-  }
+  return json(200, {
+    message: existing
+      ? "You’re already on the list — we’ll be in touch."
+      : "You’re on the list. We’ll be in touch.",
+  });
 }
