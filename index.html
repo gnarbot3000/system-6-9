@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>System 6.9 — Coming Soon</title>
+  <meta name="description" content="System 6.9 — open DIY endless shuttle. Control box, community software, water ski snow skate. Coming soon." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #f4f7fc;
+      --muted: rgba(232,238,248,0.78);
+      --accent: #3de0c0;
+      --accent2: #8ec0ff;
+      --line: rgba(255,255,255,0.16);
+      --danger: #ff8e8e;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: #0b1220;
+    }
+    .bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: #0b1220;
+    }
+    .bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+    .bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,12,22,0.55) 0%, rgba(8,12,22,0.35) 35%, rgba(8,12,22,0.72) 100%),
+        radial-gradient(900px 500px at 50% 20%, transparent 0%, rgba(8,12,22,0.45) 100%);
+      pointer-events: none;
+    }
+    .wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem 2.5rem;
+    }
+    .card {
+      width: min(560px, 100%);
+      background: rgba(12, 18, 32, 0.42);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 2.25rem 1.75rem 1.75rem;
+      backdrop-filter: blur(14px) saturate(1.15);
+      -webkit-backdrop-filter: blur(14px) saturate(1.15);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(61,224,192,0.4);
+      background: rgba(61,224,192,0.1);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+    .badge::before {
+      content: "";
+      width: 0.45rem;
+      height: 0.45rem;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+    h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(2.1rem, 6.5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+    h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .tag {
+      margin: 0 0 1.25rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.45;
+    }
+    .uses {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      justify-content: center;
+      margin: 0 0 1.5rem;
+    }
+    .uses span {
+      font-size: 0.8rem;
+      color: var(--ink);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+    }
+    .signup {
+      text-align: left;
+      margin: 0 0 1.25rem;
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.22);
+    }
+    .signup h2 {
+      margin: 0 0 0.35rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .signup p {
+      margin: 0 0 0.85rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .row input[type="email"] {
+      flex: 1 1 180px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 0.7rem 0.85rem;
+      font: inherit;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .row input[type="email"]:focus {
+      border-color: rgba(61,224,192,0.55);
+      box-shadow: 0 0 0 3px rgba(61,224,192,0.15);
+    }
+    .row input::placeholder { color: rgba(232,238,248,0.45); }
+    .row button {
+      flex: 0 0 auto;
+      border: none;
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: #041018;
+      background: linear-gradient(90deg, var(--accent), #6ad0ff);
+    }
+    .row button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+    .msg {
+      margin: 0.65rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      min-height: 1.1em;
+    }
+    .msg.ok { color: var(--accent); }
+    .msg.err { color: var(--danger); }
+    .fine {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+      text-align: center;
+    }
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.75rem;
+      color: rgba(232,238,248,0.65);
+      text-align: center;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true">
+    <video
+      src="media/splash-endless.mp4"
+      poster="media/splash-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+    ></video>
+  </div>
+  <div class="wrap">
+    <main class="card">
+      <div class="badge">Coming soon</div>
+      <h1>System <span>6.9</span></h1>
+      <p class="tag">Open DIY endless shuttle.<br />Control box. Community software. Your motor &amp; pack.</p>
+      <div class="uses">
+        <span>Foil / skim</span>
+        <span>Snow</span>
+        <span>Sled uphill</span>
+        <span>Skate tow</span>
+      </div>
+
+      <form class="signup" id="signup" novalidate>
+        <h2>Get more info</h2>
+        <p>Leave your email and we’ll ping you when builds, kits, and docs are ready.</p>
+        <div class="row">
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" />
+          <button type="submit" id="submit">Notify me</button>
+        </div>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="fine">Software will be free on GitHub. Use at your own risk.<br />Prototype in progress.</p>
+    </main>
+    <footer>system6point9.com · systemsixpointnine.com</footer>
+  </div>
+  <script>
+    (function () {
+      var form = document.getElementById("signup");
+      var email = document.getElementById("email");
+      var btn = document.getElementById("submit");
+      var msg = document.getElementById("msg");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        msg.className = "msg";
+        msg.textContent = "";
+        var value = (email.value || "").trim();
+        if (!value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+          msg.className = "msg err";
+          msg.textContent = "Enter a valid email.";
+          email.focus();
+          return;
+        }
+        btn.disabled = true;
+        msg.textContent = "Sending…";
+
+        fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({ email: value, source: location.hostname })
+        })
+          .then(function (r) {
+            return r.json().then(function (data) {
+              return { ok: r.ok, data: data };
+            });
+          })
+          .then(function (res) {
+            if (!res.ok) throw new Error((res.data && res.data.error) || "Signup failed");
+            msg.className = "msg ok";
+            msg.textContent = res.data.message || "You’re on the list.";
+            form.reset();
+          })
+          .catch(function (err) {
+            msg.className = "msg err";
+            msg.textContent = err.message || "Something went wrong. Try again.";
+          })
+          .finally(function () {
+            btn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
