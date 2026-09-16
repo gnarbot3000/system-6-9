@@ -206,6 +206,32 @@
       text-align: center;
       text-shadow: 0 1px 8px rgba(0,0,0,0.5);
     }
+
+    .learn {
+      margin: 0 0 1.25rem;
+      font-size: 0.85rem;
+    }
+    .learn a {
+      color: var(--accent2);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(142,192,255,0.35);
+    }
+    .learn a:hover {
+      color: var(--accent);
+      border-bottom-color: rgba(61,224,192,0.55);
+    }
+    footer a {
+      color: rgba(232,238,248,0.75);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    footer .sep {
+      margin: 0 0.45rem;
+      opacity: 0.45;
+    }
   </style>
 </head>
 <body>
@@ -230,6 +256,7 @@
         <span>Sled uphill</span>
         <span>Skate tow</span>
       </div>
+      <p class="learn"><a href="/exec-summary.html">Read the executive summary →</a></p>
 
       <form class="signup" id="signup" novalidate>
         <h2>Want to contribute?</h2>
@@ -243,7 +270,7 @@
 
       <p class="fine">Software free on GitHub. Parts from Home Depot / Harbor Freight / online — plus kits for control boards, Dyneema, and traveler hardware you can’t get at the big box.<br />Community first. Use at your own risk.</p>
     </main>
-    <footer>system6point9.com · systemsixpointnine.com</footer>
+    <footer><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
   </div>
   <script>
     (function () {
