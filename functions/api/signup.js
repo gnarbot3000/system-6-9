@@ -50,6 +50,7 @@ export async function onRequestPost(context) {
   const record = {
     email,
     source: source || "unknown",
+    status: "pending",
     at: new Date().toISOString(),
     updated: Boolean(existing),
   };
