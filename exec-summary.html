@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="js/ga.js?v=ga1" data-cfasync="false"></script>
   <title>System 6.9 — Executive Summary</title>
-  <meta name="description" content="System 6.9 — community DIY endless shuttle powered by battery or hard-wired. Control box, accessories, open software. Use at your own risk." />
+  <meta name="description" content="System 6.9 — community DIY endless shuttle. Roadmap, parts list, control box + kits. Battery or hard-wired. Use at your own risk." />
   <meta name="theme-color" content="#0b1220" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -164,8 +164,54 @@
     }
     @media (max-width: 640px) {
       .grid-2 { grid-template-columns: 1fr; }
-      th:nth-child(3), td:nth-child(3) { display: none; }
+      table.use-cases th:nth-child(3),
+      table.use-cases td:nth-child(3) { display: none; }
+      .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     }
+    .phase {
+      margin: 0 0 0.85rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .phase:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .phase h3 {
+      margin: 0 0 0.35rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--ink);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .phase p { margin: 0; font-size: 0.88rem; }
+    .tag {
+      display: inline-flex;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+    .tag.done {
+      color: var(--accent);
+      border-color: rgba(61,224,192,0.45);
+      background: rgba(61,224,192,0.12);
+    }
+    .tag.now {
+      color: var(--accent2);
+      border-color: rgba(142,192,255,0.45);
+      background: rgba(142,192,255,0.12);
+    }
+    ol.buy {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+    ol.buy li { margin-bottom: 0.35rem; }
+    ol.buy li:last-child { margin-bottom: 0; }
     .arch {
       font-family: "JetBrains Mono", monospace;
       font-size: 0.72rem;
@@ -456,9 +502,206 @@
     </section>
 
     <section>
-      <h2>Coming soon</h2>
-      <p>Prototype first. Contribute if you want to help with builds, kits, docs, and community work — signup is on the <a href="/">home splash</a>.</p>
-      <p>Software free on GitHub. Parts from big-box and online — plus kits for control boards, Dyneema, and traveler hardware you can’t get at the big box. Community first. Use at your own risk.</p>
+      <h2>Roadmap</h2>
+      <div class="phase">
+        <h3>Phase 0 — Design freeze <span class="tag done">Done</span></h3>
+        <p>One-motor endless loop. Drive A-frame = power + control. Return A-frame = idler + tension. Soft ramp, E-stop, low tow height (~0.8–1.5&nbsp;m).</p>
+      </div>
+      <div class="phase">
+        <h3>Phase 1 — Bench prove <span class="tag now">Now</span></h3>
+        <p>Keyed hub → capstan grips multi-wrap under a hard dead pull; E-stop kills power. <strong style="color:var(--ink)">Do not go to the lake until this passes.</strong></p>
+      </div>
+      <div class="phase">
+        <h3>Phase 2 — Empty lake shuttle</h3>
+        <p>Full line (~80–150&nbsp;m span), two A-frames, springs + straps, anchors/guys. Pass = clean reverse cycles with no rider.</p>
+      </div>
+      <div class="phase">
+        <h3>Phase 3 — First rides</h3>
+        <p>Carrier + handle. Foil first (~12–18&nbsp;km/h), then skim (~25–35&nbsp;km/h) with spotter + E-stop ready.</p>
+      </div>
+      <div class="phase">
+        <h3>Phase 4 — Open the community</h3>
+        <p>Freeze control-box I/O from what worked. Publish firmware, docs, CAD, and a compatible BOM on GitHub. Splash signup for contributors.</p>
+      </div>
+      <div class="phase">
+        <h3>Phase 5 — Kits that aren’t at the big box</h3>
+        <p>Sell control box, Dyneema / traveler / capstan / tension / mount kits, then lifestyle. Motors, ESCs, packs, and chargers stay third-party — sized per use case.</p>
+      </div>
+      <div class="phase">
+        <h3>Later (optional)</h3>
+        <p>Sport accessory packs (snow, sled, skate). Still not tall-tower wake parks or certified ski-area lifts.</p>
+      </div>
+      <p class="note" style="margin-top:1rem;">Community DIY. Use at your own risk. Not a certified tow system. Contribute via the <a href="/">home splash</a> signup.</p>
+    </section>
+
+    <section>
+      <h2>Parts list</h2>
+      <p>Approximate USD from research spot-checks — will move; use at your own risk. Not a certified tow system. Span ~80–150&nbsp;m → endless loop ~200–350&nbsp;m of line. Pick <strong style="color:var(--ink)">battery or hard-wired</strong> — don’t double-count.</p>
+      <p class="note"><strong style="color:var(--danger)">Capstan rule:</strong> do not surge bare AmSteel-Blue on aluminum. Use jacketed UHMWPE, polyester drive wraps, or a grooved keyed drum.</p>
+
+      <h2 style="margin-top:1.25rem;">Powertrain — pick one path</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Path</th>
+              <th>What’s in it</th>
+              <th>Approx USD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--ink)">Battery lean</strong></td>
+              <td>~1.5–2&nbsp;kW BLDC + ESC, 48&nbsp;V LiFePO4 ~40–50&nbsp;Ah, light reduction</td>
+              <td>$560–1,100</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--ink)">Battery comfortable / adult deep-water skim</strong></td>
+              <td>High-kW / 80100-class path + high-C pack + proper reduction</td>
+              <td>$1,500–4,000+</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--ink)">Hard-wired lean</strong></td>
+              <td>2–3&nbsp;HP VFD + 1.5–2&nbsp;HP keyed 3φ + mount/coupling</td>
+              <td>$450–850</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--ink)">Hard-wired adult deep-water</strong></td>
+              <td>5–10&nbsp;HP motor + matching VFD</td>
+              <td>$600–1,500+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Lean is cruise / youth / assisted-plane. Adult ~100&nbsp;kg deep-water skim needs ~8–12+&nbsp;kW peak / ≥~200&nbsp;kgf — size for the <em>start</em>, not cruise. Youth ~30&nbsp;kg can stay lean–comfortable with torque gearing + a long soft ramp.</p>
+
+      <h2 style="margin-top:1.25rem;">Shared hardware</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Block</th>
+              <th>Notes</th>
+              <th>Approx USD</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capstan / keyed drum</td>
+              <td>Portable-winch-style or DIY grooved keyed drum</td>
+              <td>$85–400</td>
+            </tr>
+            <tr>
+              <td>Return + fairlead sheaves</td>
+              <td>2–4 snatch blocks / marine sheaves</td>
+              <td>$50–250</td>
+            </tr>
+            <tr>
+              <td>Keyed hub / bushing</td>
+              <td>Match motor/gearbox shaft</td>
+              <td>$40–150</td>
+            </tr>
+            <tr>
+              <td>Line 250–350&nbsp;m</td>
+              <td>Jacketed 1/4″ UHMWPE, hybrid, or 8–10&nbsp;mm coated</td>
+              <td>$1,000–2,200</td>
+            </tr>
+            <tr>
+              <td>Two towers</td>
+              <td>Scaffold / pipe A-frames / lumber POC (temp)</td>
+              <td>$150–1,200</td>
+            </tr>
+            <tr>
+              <td>Tension kit</td>
+              <td>Springs, ratchet straps, turnbuckles, take-up</td>
+              <td>$150–400</td>
+            </tr>
+            <tr>
+              <td>Anchors / guys</td>
+              <td>Earth anchors, ballast, braces</td>
+              <td>$80–300</td>
+            </tr>
+            <tr>
+              <td>E-stop + contactor + enclosure + wire</td>
+              <td>Hard-wired NC E-stop; sized for peak current</td>
+              <td>$200–600 (+ charger if needed)</td>
+            </tr>
+            <tr>
+              <td>Carrier + short tow + handle</td>
+              <td>Rider interface</td>
+              <td>$70–200</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="margin-top:1.25rem;">Roll-up kits (two towers, one endless loop)</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Build</th>
+              <th>Approx total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lean DIY battery (generic haul / youth-leaning)</td>
+              <td>~$2,000–3,500</td>
+            </tr>
+            <tr>
+              <td>Hard-wired Phase-1</td>
+              <td>~$2,200–3,500</td>
+            </tr>
+            <tr>
+              <td>Comfortable Phase-1</td>
+              <td>~$3,500–5,500</td>
+            </tr>
+            <tr>
+              <td>Adult deep-water skim (~100&nbsp;kg)</td>
+              <td>~$4,500–9,000 battery · ~$4,000–7,500 hard-wired</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 style="margin-top:1.25rem;">Buy order</h2>
+      <ol class="buy">
+        <li>Pick power path (battery vs hard-wired) and use-case size (youth vs adult deep-water).</li>
+        <li>Buy line (longest lead / largest $).</li>
+        <li>Capstan + return sheaves — prove grip before load.</li>
+        <li>Two short towers + guys/anchors.</li>
+        <li>Tension + take-up.</li>
+        <li>Electrical safety panel.</li>
+        <li>Dry run at 20–40&nbsp;m before full 80–150&nbsp;m.</li>
+        <li>Empty shuttle → foil → skim.</li>
+      </ol>
+
+      <h2 style="margin-top:1.25rem;">Sell vs source</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>We aim to sell</th>
+              <th>You source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Control box (brain, E-stop path, connectors — no motor/pack)</td>
+              <td>Motors, ESCs, batteries, chargers, remotes</td>
+            </tr>
+            <tr>
+              <td>Dyneema / traveler / capstan / tension / mount kits</td>
+              <td>Scaffold, pipe, Unistrut, lumber, common hardware</td>
+            </tr>
+            <tr>
+              <td>Lifestyle merch</td>
+              <td>Site anchors, ballast, local fab</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <footer>
