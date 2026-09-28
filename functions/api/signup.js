@@ -56,9 +56,14 @@ export async function onRequestPost(context) {
   };
   await kv.put(key, JSON.stringify(record));
 
+  const merch = source.startsWith("merch:");
   return json(200, {
     message: existing
-      ? "You’re already on the list — we’ll be in touch."
-      : "You’re on the list. We’ll be in touch.",
+      ? merch
+        ? "You’re already on the merch waitlist — we’ll email when it drops."
+        : "You’re already on the list — we’ll be in touch."
+      : merch
+        ? "You’re on the list for when this merch drops. No charge — we’ll email you."
+        : "You’re on the list. We’ll be in touch.",
   });
 }
