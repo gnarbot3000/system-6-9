@@ -1,5 +1,5 @@
 /**
- * System 6.9 waitlist — stores emails in Cloudflare KV (SYSTEM69_WAITLIST).
+ * System 6.9 update list: stores emails in Cloudflare KV (SYSTEM69_WAITLIST).
  */
 function json(status, body) {
   return new Response(JSON.stringify(body), {
@@ -14,7 +14,7 @@ function json(status, body) {
 
 // Optional intent fields from the signup form. Anything else is dropped.
 const USE = ["Foil", "Wake / skim", "Snow / sled", "Skate", "Not sure yet"];
-const WANT = ["guide", "kit", "control", "contribute"];
+const WANT = ["guide", "builds", "contribute"];
 
 export async function onRequestOptions() {
   return new Response(null, {
