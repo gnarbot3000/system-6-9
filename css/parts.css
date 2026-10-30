@@ -38,3 +38,30 @@ h1 { font-size: 1.6rem; line-height: 1.2; margin: 0.5rem 0 0.75rem; letter-spaci
 .guide-page th, .guide-page td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 .guide-page th { color: var(--ink); font-weight: 600; }
 .guide-page td { color: var(--muted); }
+/* /builds */
+.builds { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.9rem; }
+.build { padding: 1rem; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,0.04); }
+.build h2 { margin: 0; font-size: 1.15rem; }
+.build h3 { margin: 0.9rem 0 0.4rem; font-size: 0.95rem; }
+.build p { color: var(--muted); font-size: 0.92rem; line-height: 1.5; margin: 0.5rem 0 0; }
+.build-no { color: var(--accent) !important; font-size: 0.78rem !important; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.2rem !important; }
+.build-by { margin: 0.1rem 0 0.4rem !important; font-size: 0.85rem !important; }
+.build-img { display: block; width: 100%; max-height: 420px; object-fit: cover; border-radius: 10px; margin: 0.6rem 0; border: 1px solid var(--line); }
+.paid { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.paid th, .paid td { padding: 0.45rem 0; border-bottom: 1px solid var(--line); text-align: left; font-weight: 400; vertical-align: top; }
+.paid td { text-align: right; white-space: nowrap; padding-left: 0.75rem; color: var(--ink); }
+.chips { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chips li { font-size: 0.82rem; padding: 0.25rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.submit form { display: grid; gap: 0.75rem; margin-top: 0.75rem; }
+.submit label { display: grid; gap: 0.3rem; font-size: 0.88rem; font-weight: 600; }
+.submit input, .submit textarea { font: inherit; font-weight: 400; color: var(--ink); background: rgba(0,0,0,0.3); border: 1px solid var(--line); border-radius: 9px; padding: 0.6rem 0.7rem; width: 100%; box-sizing: border-box; }
+.submit fieldset { border: 1px solid var(--line); border-radius: 10px; padding: 0.6rem 0.75rem; margin: 0; }
+.submit legend { font-size: 0.88rem; font-weight: 600; padding: 0 0.3rem; }
+.pick { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.submit .chip { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 400; font-size: 0.82rem; padding: 0.3rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; }
+.submit .chip input { width: auto; margin: 0; }
+.hint { margin: -0.4rem 0 0; font-size: 0.8rem; color: var(--muted); }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form-msg { min-height: 1.2em; font-size: 0.88rem; margin: 0; }
+.submit button { border: 0; cursor: pointer; justify-self: start; font: inherit; font-weight: 700; }
+.submit button:disabled { opacity: 0.6; }

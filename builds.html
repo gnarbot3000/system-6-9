@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="/js/ga.js?v=ga1" data-cfasync="false"></script>
+  <title>DIY endless tow builds | System 6.9</title>
+  <meta name="description" content="Builds from people making their own System 6.9 endless tow: parts, notes and photos. Every build is reviewed before it shows. Not certified, build at your own risk." />
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="canonical" href="https://www.system6point9.com/builds" />
+  <meta property="og:title" content="DIY endless tow builds | System 6.9" />
+  <meta property="og:description" content="Builds from people making their own System 6.9 endless tow. Reviewed before they show." />
+  <meta property="og:url" content="https://www.system6point9.com/builds" />
+  <meta property="og:image" content="https://www.system6point9.com/media/splash-poster.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/parts.css?v=builds1" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">System <span>6.9</span></a>
+    <nav class="nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/guide">Guide</a>
+      <a href="/parts">Parts</a>
+      <a href="/builds" aria-current="page">Builds</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <h1>Builds</h1>
+    <p class="intro">Endless tows people are building from the guide. Every build is reviewed before it shows here.</p>
+    <p class="warn"><strong>Not certified.</strong> These are home builds, not tested products. Build and ride at your own risk, and follow the safety rules in the <a href="/guide#safety">guide</a>.</p>
+
+    <ol class="builds" id="builds-list">
+      <li class="build" id="build-1">
+        <p class="build-no">Build #1</p>
+        <h2>Bench prototype</h2>
+        <p class="build-by">by Joel</p>
+        <p>The first System 6.9 drive end. It's a capstan drum on a 25 mm shaft in two pillow blocks, inside a plywood housing, with a roller fairlead feeding both strands onto the drum. It's on the bench for grip and empty-shuttle tests. Nothing has carried a rider yet.</p>
+        <p>The shaft hub and the capstan adapter parts are 3D printed in PETG. That's a plastic test print for the bench only, not something to ride on.</p>
+        <h3>What Joel paid</h3>
+        <table class="paid">
+          <tr><th scope="row"><a href="/parts#pca1100">PCA-1100 capstan drum</a></th><td>$105.01</td></tr>
+          <tr><th scope="row"><a href="/parts#hucp205">HUCP205 pillow blocks, 2-pack</a></th><td>$26.99</td></tr>
+          <tr><th scope="row"><a href="/parts#weisen">WeiSen roller fairleads, 2</a></th><td>$43.18</td></tr>
+          <tr><th scope="row"><a href="/parts#amsteel600">AmSteel-Blue rope and splicing fids</a></th><td>about $257</td></tr>
+          <tr><th scope="row"><a href="/parts#petg">PETG filament, 1 kg</a></th><td>$12.59</td></tr>
+          <tr><th scope="row"><a href="/parts#flipsky80100">Flipsky 80100 motor</a></th><td>about $229</td></tr>
+          <tr><th scope="row"><a href="/parts#housing">Plywood, bolts, glue</a></th><td>local store</td></tr>
+        </table>
+        <p class="fine">What Joel paid, prices change. About $674 before the plywood and hardware.</p>
+      </li>
+    </ol>
+    <p class="loading" id="builds-status" hidden></p>
+
+    <section class="cta submit" id="submit">
+      <h2>Share your build</h2>
+      <p>Send a short write-up. I read every one before it goes up. Use a first name or a handle, and link a photo of the build itself, not people.</p>
+      <form id="build-form" novalidate>
+        <label>Build name <input name="name" maxlength="60" required autocomplete="off" /></label>
+        <label>First name or handle <input name="by" maxlength="30" required autocomplete="nickname" /></label>
+        <label>Photo link (optional) <input name="image" type="url" maxlength="500" placeholder="https://" inputmode="url" /></label>
+        <p class="hint">Paste a link to a photo you've already posted. I don't host uploads. Phone photos can carry location data, so strip it before you post.</p>
+        <fieldset>
+          <legend>Parts you used from the <a href="/parts">parts list</a></legend>
+          <div class="pick" id="parts-pick"></div>
+        </fieldset>
+        <label>Other parts <input name="other" maxlength="300" autocomplete="off" /></label>
+        <label>Notes <textarea name="notes" maxlength="1500" rows="5" placeholder="Span, rider weight, what worked, what you'd change"></textarea></label>
+        <label class="hp" aria-hidden="true">Company <input name="company" tabindex="-1" autocomplete="off" /></label>
+        <button class="check" type="submit">Send for review</button>
+        <p class="form-msg" id="build-msg" role="status"></p>
+      </form>
+    </section>
+    <p class="fine">Not a certified tow system. You build it, you're responsible for it.</p>
+  </main>
+  <script src="/js/builds.js?v=builds1" defer></script>
+</body>
+</html>
