@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="js/ga.js?v=ga1" data-cfasync="false"></script>
-  <title>System 6.9 — Coming Soon</title>
-  <meta name="description" content="System 6.9 — community DIY endless shuttle powered by battery or hard-wired. Open software, big-box builds. Coming soon." />
+  <title>System 6.9 — Build your own endless tow (coming soon)</title>
+  <meta name="description" content="Build your own endless shuttle tow for foil, skim, backyard snow, sled and skate, from big-box parts and free open software. Join the list for the build guide." />
   <meta name="theme-color" content="#0b1220" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -233,6 +233,37 @@
       margin: 0 0.45rem;
       opacity: 0.45;
     }
+    .tag strong { color: var(--ink); }
+    .guide, .who {
+      text-align: left;
+      margin: 0 0 1.25rem;
+      padding: 0.9rem 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .guide-kicker {
+      margin: 0 0 0.35rem !important;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent) !important;
+    }
+    .guide p, .who li {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .who h2 {
+      margin: 0 0 0.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .who ul { margin: 0; padding-left: 1.1rem; }
+    .who li + li { margin-top: 0.3rem; }
+    .signup { border-color: rgba(61,224,192,0.45); }
   </style>
 </head>
 <body>
@@ -250,27 +281,42 @@
     <main class="card">
       <div class="badge">Coming soon</div>
       <h1>System <span>6.9</span></h1>
-      <p class="tag">Endless shuttle powered by battery or hard-wired.<br />Open software. Big-box builds. Community DIY — size the motor and pack for your use case.</p>
+      <p class="tag"><strong>Build your own endless tow.</strong> A battery or plug-in shuttle you put together from big-box parts and free open software, then ride lap after lap.</p>
       <div class="uses">
         <span>Foil / skim</span>
-        <span>Snow</span>
+        <span>Backyard snow</span>
         <span>Sled uphill</span>
         <span>Skate tow</span>
       </div>
-      <p class="learn"><a href="/exec-summary.html">Read the executive summary →</a></p>
-      <p class="learn"><a href="/store/">Merch store (sold out) →</a></p>
+
+      <div class="guide">
+        <p class="guide-kicker">Build guide coming</p>
+        <p>Parts list from Home Depot, Harbor Freight and online, frame plans, wiring, and the open firmware. You size the motor and pack for your spot. The list gets it first.</p>
+      </div>
 
       <form class="signup" id="signup" novalidate>
-        <h2>Want to contribute?</h2>
-        <p>Enter your email if you want to contribute to the projects — builds, kits, docs, and community work.</p>
+        <h2>Get the build guide first</h2>
+        <p>One email when the guide and the first kits (control board, Dyneema, traveler hardware) are ready. We only email about System 6.9.</p>
         <div class="row">
-          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" />
-          <button type="submit" id="submit">Join in</button>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" aria-label="Email" />
+          <button type="submit" id="submit">Get early access</button>
         </div>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
 
-      <p class="fine">Software free on GitHub. Parts from Home Depot / Harbor Freight / online — plus kits for control boards, Dyneema, and traveler hardware you can’t get at the big box.<br />Community first. Use at your own risk.</p>
+      <div class="who">
+        <h2>Who it's for</h2>
+        <ul>
+          <li>Riders with a lake, pond or backyard hill and no boat or cable park.</li>
+          <li>DIY builders happy to spend a weekend with a drill and a battery pack.</li>
+          <li>Families and clubs who want lots of short runs instead of one long ride.</li>
+        </ul>
+      </div>
+
+      <p class="learn"><a href="/exec-summary.html">Read the executive summary →</a></p>
+      <p class="learn"><a href="/store/">Merch store (sold out) →</a></p>
+
+      <p class="fine">Community DIY project. Software free on GitHub; kits only for the parts big-box stores don’t carry.<br />Not a certified tow system. Use at your own risk.</p>
     </main>
     <footer><a href="/store/">Merch</a><span class="sep">·</span><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
   </div>
@@ -310,6 +356,7 @@
             msg.className = "msg ok";
             msg.textContent = res.data.message || "You’re on the list.";
             form.reset();
+            try { if (window.gtag) window.gtag("event", "generate_lead", { form: "waitlist" }); } catch (_) {}
           })
           .catch(function (err) {
             msg.className = "msg err";
