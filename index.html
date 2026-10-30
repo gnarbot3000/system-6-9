@@ -156,7 +156,6 @@
     .guide-sale h2 { margin: 0 0 0.5rem; font-size: 1.1rem; }
     .guide-sale ul { margin: 0 0 0.75rem; padding-left: 1.1rem; color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
     .guide-sale li { margin: 0 0 0.3rem; }
-    .guide-sale .price { margin: 0 0 0.75rem; color: var(--ink); }
     .guide-sale .btn {
       display: inline-block;
       padding: 0.7rem 1.1rem;
@@ -165,11 +164,6 @@
       color: #08121f;
       text-decoration: none;
       background: linear-gradient(90deg, var(--accent), #6ad0ff);
-    }
-    .guide-sale .btn.soon {
-      color: var(--ink);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--line);
     }
     .signup {
       text-align: left;
@@ -333,16 +327,16 @@
         <span>Skate tow</span>
       </div>
 
-      <p class="proof">On the bench now: Portable Winch PCA-1100 capstan, UCP205 pillow blocks, printed PETG shaft, 80100 brushless motor, AmSteel endless loop, roller fairleads, plywood housing. <a href="/parts.html">See the parts I'm using →</a></p>
+      <p class="proof">On the bench now: Portable Winch PCA-1100 capstan, UCP205 pillow blocks, printed PETG shaft, 80100 brushless motor, AmSteel endless loop, roller fairleads, plywood housing. <a href="/parts">See the parts I'm using →</a></p>
 
       <div class="guide">
-        <p class="guide-kicker">Build guide coming</p>
-        <p>Parts list from Home Depot, Harbor Freight and online, frame plans, wiring, and the open firmware. You size the motor and pack for your spot. The list gets it first.</p>
+        <p class="guide-kicker">Free build guide, early access</p>
+        <p>How it works, safety, the test ladder and the drive end cut list are up now. Wiring, frames and the open firmware come as I build them. <a href="/guide">Read the guide</a>.</p>
       </div>
 
       <form class="signup" id="signup" novalidate>
-        <h2>Get the build guide first</h2>
-        <p>One email when the guide and the first kits (control board, Dyneema, traveler hardware) are ready. We only email about System 6.9.</p>
+        <h2>Get each new chapter</h2>
+        <p>An email when a guide chapter lands or the first kits (control board, Dyneema, traveler hardware) are ready. Only about System 6.9.</p>
         <div class="row">
           <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" aria-label="Email" />
           <button type="submit" id="submit">Get early access</button>
@@ -351,18 +345,15 @@
       </form>
 
       <section class="guide-sale" id="guide">
-        <h2>System 6.9 Build Guide: early access</h2>
+        <h2>Read the free build guide</h2>
         <ul>
-          <li>The drive end as I'm building it: PCA-1100 capstan on UCP205 pillow blocks, printed PETG shaft, housing cut list with every dimension</li>
-          <li>Full parts list with links</li>
-          <li>Motor and reduction choices: lean battery vs 80100-class vs plug-in VFD, and what each one can pull</li>
-          <li>Endless-loop line: why bare AmSteel shouldn't surge on a capstan, and what to use instead</li>
-          <li>Tension, towers, E-stop wiring, and the "don't go to the lake until" checklist</li>
-          <li>Every update free as it goes from bench to empty shuttle to first rides</li>
+          <li>How a one-motor endless loop works, and the safety rules I follow</li>
+          <li>The test ladder from bench grip test to empty shuttle to first rides</li>
+          <li>The capstan housing cut list and the numbers to measure before you drill</li>
+          <li>Chain, belt or direct drive, and how much rope to order</li>
         </ul>
-        <p class="price"><strong>$29</strong> Founding Builder price · $49 after first rides</p>
-        <a id="buy-guide" class="btn" href="#signup">Get early access</a>
-        <p class="fine">Digital PDF plus updates. It's a build journal, not a certified design. Build and ride at your own risk.</p>
+        <a class="btn" href="/guide">Read the guide</a>
+        <p class="fine">Free and updated as the build goes. It's a build journal, not a certified design. Build and ride at your own risk.</p>
       </section>
 
       <div class="who">
@@ -379,7 +370,7 @@
 
       <p class="fine">Community DIY project. Software free on GitHub; kits only for the parts big-box stores don’t carry.<br />Not a certified tow system. Use at your own risk.</p>
     </main>
-    <footer><a href="/parts.html">Parts</a><span class="sep">·</span><a href="/store/">Merch</a><span class="sep">·</span><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
+    <footer><a href="/parts">Parts</a><span class="sep">·</span><a href="/store/">Merch</a><span class="sep">·</span><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
   </div>
   <script>
     (function () {
@@ -429,6 +420,5 @@
       });
     })();
   </script>
-  <script src="js/guide.js?v=guide1" defer></script>
 </body>
 </html>
