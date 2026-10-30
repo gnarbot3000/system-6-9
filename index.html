@@ -144,7 +144,7 @@
       line-height: 1.5;
       color: var(--muted);
     }
-    .proof a { color: var(--accent2); font-weight: 600; }
+    .proof a, .guide a { color: var(--accent2); font-weight: 600; }
     .guide-sale {
       text-align: left;
       margin: 0 0 1.25rem;
@@ -173,6 +173,28 @@
       border: 1px solid var(--line);
       background: rgba(0,0,0,0.22);
     }
+    .signup .intent { margin-bottom: 0.6rem; }
+    .signup .intent label {
+      flex: 1 1 150px;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .signup select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 0.6rem 0.7rem;
+      font: inherit;
+      font-size: 0.85rem;
+    }
+    .signup select option { color: #08121f; }
+    .signup .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
     .signup h2 {
       margin: 0 0 0.35rem;
       font-size: 0.95rem;
@@ -337,9 +359,33 @@
       <form class="signup" id="signup" novalidate>
         <h2>Get each new chapter</h2>
         <p>An email when a guide chapter lands or a new community build goes up. Only about System 6.9.</p>
+        <div class="row intent">
+          <label for="use">I ride
+            <select id="use" name="use">
+              <option value="">Pick one (optional)</option>
+              <option>Foil</option>
+              <option>Wake / skim</option>
+              <option>Snow / sled</option>
+              <option>Skate</option>
+              <option>Not sure yet</option>
+            </select>
+          </label>
+          <label for="want">Most interested in
+            <select id="want" name="want">
+              <option value="">Pick one (optional)</option>
+              <option value="guide">New guide chapters</option>
+              <option value="builds">Community builds</option>
+              <option value="contribute">Sharing my own build</option>
+            </select>
+          </label>
+        </div>
         <div class="row">
           <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@email.com" aria-label="Email" />
           <button type="submit" id="submit">Email me updates</button>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="company">Company</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
         </div>
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
@@ -397,7 +443,13 @@
         fetch("/api/signup", {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ email: value, source: location.hostname })
+          body: JSON.stringify({
+            email: value,
+            source: location.hostname,
+            use: document.getElementById("use").value,
+            want: document.getElementById("want").value,
+            company: document.getElementById("company").value
+          })
         })
           .then(function (r) {
             return r.json().then(function (data) {
@@ -408,8 +460,8 @@
             if (!res.ok) throw new Error((res.data && res.data.error) || "Signup failed");
             msg.className = "msg ok";
             msg.textContent = res.data.message || "You’re on the list.";
+            try { if (window.gtag) window.gtag("event", "generate_lead", { form: "updates", want: document.getElementById("want").value || "none" }); } catch (_) {}
             form.reset();
-            try { if (window.gtag) window.gtag("event", "generate_lead", { form: "waitlist" }); } catch (_) {}
           })
           .catch(function (err) {
             msg.className = "msg err";
