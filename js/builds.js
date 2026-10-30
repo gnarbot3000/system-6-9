@@ -17,7 +17,7 @@
     var li = el("li", "build");
     li.appendChild(el("h2", "", b.name));
     li.appendChild(el("p", "build-by", "by " + b.by));
-    if (b.image && /^https:\/\//.test(b.image)) {
+    if (b.image && /^https:\/\/(i\.imgur\.com|i\.postimg\.cc|live\.staticflickr\.com)\//.test(b.image)) {
       var img = el("img", "build-img");
       img.src = b.image;
       img.alt = "Photo of " + b.name;

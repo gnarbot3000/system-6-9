@@ -5,7 +5,7 @@
  * Store: SYSTEM69_WAITLIST KV, keys build:pending:<id> and build:ok:<id>.
  * Same-origin only (no CORS headers). Photos are links, never uploaded here.
  */
-import { validateBuild, json, MAX_PENDING, RATE_PER_HOUR } from "../_lib/builds.js";
+import { validateBuild, json, isJson, ipHash, MAX_PENDING, RATE_PER_HOUR } from "../_lib/builds.js";
 
 export async function onRequestGet(context) {
   const kv = context.env.SYSTEM69_WAITLIST;
@@ -28,6 +28,8 @@ export async function onRequestPost(context) {
   const kv = context.env.SYSTEM69_WAITLIST;
   if (!kv) return json(500, { error: "Store not configured." });
 
+  // JSON only, so a cross-site form post can't skip the browser preflight.
+  if (!isJson(context.request)) return json(415, { error: "Send JSON." });
   let p;
   try {
     p = await context.request.json();
@@ -43,7 +45,7 @@ export async function onRequestPost(context) {
   // Rate limit: a few submissions per IP per hour.
   const ip = context.request.headers.get("CF-Connecting-IP") || "unknown";
   const hour = new Date().toISOString().slice(0, 13);
-  const rlKey = `rl:builds:${ip}:${hour}`;
+  const rlKey = `rl:builds:${await ipHash(ip)}:${hour}`;
   const count = Number((await kv.get(rlKey)) || 0);
   if (count >= RATE_PER_HOUR) return json(429, { error: "Too many submissions. Try again in an hour." });
   await kv.put(rlKey, String(count + 1), { expirationTtl: 7200 });
