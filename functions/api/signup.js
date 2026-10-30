@@ -12,6 +12,10 @@ function json(status, body) {
   });
 }
 
+// Optional intent fields from the signup form. Anything else is dropped.
+const USE = ["Foil", "Wake / skim", "Snow / sled", "Skate", "Not sure yet"];
+const WANT = ["guide", "kit", "control", "contribute"];
+
 export async function onRequestOptions() {
   return new Response(null, {
     status: 204,
@@ -36,6 +40,11 @@ export async function onRequestPost(context) {
     return json(400, { error: "Invalid JSON" });
   }
 
+  // Honeypot: the hidden "company" field is only filled by bots.
+  if (String(payload?.company || "").trim()) {
+    return json(400, { error: "Could not sign up." });
+  }
+
   const email = String(payload?.email || "").trim().toLowerCase();
   const source = String(payload?.source || "").slice(0, 120);
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -47,11 +56,26 @@ export async function onRequestPost(context) {
 
   const key = `email:${email}`;
   const existing = await kv.get(key);
+  const now = new Date().toISOString();
+  let prev = null;
+  if (existing) {
+    try {
+      prev = JSON.parse(existing);
+    } catch {
+      prev = null;
+    }
+  }
+  const use = USE.includes(payload?.use) ? payload.use : (prev && prev.use) || "";
+  const want = WANT.includes(payload?.want) ? payload.want : (prev && prev.want) || "";
   const record = {
     email,
     source: source || "unknown",
+    use,
+    want,
     status: "pending",
-    at: new Date().toISOString(),
+    // Keep the first signup time; repeat signups only bump updated_at.
+    at: (prev && prev.at) || now,
+    updated_at: now,
     updated: Boolean(existing),
   };
   await kv.put(key, JSON.stringify(record));
