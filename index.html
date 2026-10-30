@@ -127,6 +127,40 @@
       padding: 0.35rem 0.65rem;
       border-radius: 999px;
     }
+    .proof {
+      text-align: left;
+      margin: 0 0 1.25rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+    .proof a { color: var(--accent2); font-weight: 600; }
+    .guide-sale {
+      text-align: left;
+      margin: 0 0 1.25rem;
+      padding: 1rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.22);
+    }
+    .guide-sale h2 { margin: 0 0 0.5rem; font-size: 1.1rem; }
+    .guide-sale ul { margin: 0 0 0.75rem; padding-left: 1.1rem; color: var(--muted); font-size: 0.9rem; line-height: 1.45; }
+    .guide-sale li { margin: 0 0 0.3rem; }
+    .guide-sale .price { margin: 0 0 0.75rem; color: var(--ink); }
+    .guide-sale .btn {
+      display: inline-block;
+      padding: 0.7rem 1.1rem;
+      border-radius: 10px;
+      font-weight: 700;
+      color: #08121f;
+      text-decoration: none;
+      background: linear-gradient(90deg, var(--accent), #6ad0ff);
+    }
+    .guide-sale .btn.soon {
+      color: var(--ink);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--line);
+    }
     .signup {
       text-align: left;
       margin: 0 0 1.25rem;
@@ -289,6 +323,8 @@
         <span>Skate tow</span>
       </div>
 
+      <p class="proof">On the bench now: Portable Winch PCA-1100 capstan, UCP205 pillow blocks, printed PETG shaft, 80100 brushless motor, AmSteel endless loop, roller fairleads, plywood housing. <a href="/parts.html">See the parts I'm using →</a></p>
+
       <div class="guide">
         <p class="guide-kicker">Build guide coming</p>
         <p>Parts list from Home Depot, Harbor Freight and online, frame plans, wiring, and the open firmware. You size the motor and pack for your spot. The list gets it first.</p>
@@ -304,6 +340,21 @@
         <p class="msg" id="msg" role="status" aria-live="polite"></p>
       </form>
 
+      <section class="guide-sale" id="guide">
+        <h2>System 6.9 Build Guide: early access</h2>
+        <ul>
+          <li>The drive end as I'm building it: PCA-1100 capstan on UCP205 pillow blocks, printed PETG shaft, housing cut list with every dimension</li>
+          <li>Full parts list with links</li>
+          <li>Motor and reduction choices: lean battery vs 80100-class vs plug-in VFD, and what each one can pull</li>
+          <li>Endless-loop line: why bare AmSteel shouldn't surge on a capstan, and what to use instead</li>
+          <li>Tension, towers, E-stop wiring, and the "don't go to the lake until" checklist</li>
+          <li>Every update free as it goes from bench to empty shuttle to first rides</li>
+        </ul>
+        <p class="price"><strong>$29</strong> Founding Builder price · $49 after first rides</p>
+        <a id="buy-guide" class="btn" href="#signup">Get early access</a>
+        <p class="fine">Digital PDF plus updates. It's a build journal, not a certified design. Build and ride at your own risk.</p>
+      </section>
+
       <div class="who">
         <h2>Who it's for</h2>
         <ul>
@@ -318,7 +369,7 @@
 
       <p class="fine">Community DIY project. Software free on GitHub; kits only for the parts big-box stores don’t carry.<br />Not a certified tow system. Use at your own risk.</p>
     </main>
-    <footer><a href="/store/">Merch</a><span class="sep">·</span><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
+    <footer><a href="/parts.html">Parts</a><span class="sep">·</span><a href="/store/">Merch</a><span class="sep">·</span><a href="/exec-summary.html">Executive summary</a><span class="sep">·</span>system6point9.com · systemsixpointnine.com</footer>
   </div>
   <script>
     (function () {
@@ -368,5 +419,6 @@
       });
     })();
   </script>
+  <script src="js/guide.js?v=guide1" defer></script>
 </body>
 </html>
