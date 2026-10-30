@@ -23,3 +23,18 @@ h1 { font-size: 1.6rem; line-height: 1.2; margin: 0.5rem 0 0.75rem; letter-spaci
 .cta p { margin: 0 0 0.6rem; color: var(--muted); font-size: 0.9rem; }
 .fine { margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
 [hidden] { display: none !important; }
+.nav a[aria-current="page"] { color: var(--ink); }
+.warn { margin: 0 0 1.25rem; padding: 0.7rem 0.9rem; border-left: 3px solid #ffb547; background: rgba(255,181,71,0.08); border-radius: 6px; font-size: 0.9rem; line-height: 1.45; }
+.toc { margin: 0 0 1.5rem; padding: 0.9rem 1rem; border: 1px solid var(--line); border-radius: 14px; background: rgba(255,255,255,0.04); }
+.toc ol { margin: 0; padding-left: 1.2rem; columns: 2; column-gap: 1.5rem; font-size: 0.9rem; line-height: 1.7; }
+@media (max-width: 480px) { .toc ol { columns: 1; } }
+.guide-page section[id] { scroll-margin-top: 1rem; margin: 0 0 1.75rem; }
+.guide-page h2 { font-size: 1.2rem; margin: 0 0 0.6rem; }
+.guide-page h3 { font-size: 1rem; margin: 1rem 0 0.4rem; }
+.guide-page p, .guide-page li { color: var(--muted); line-height: 1.55; font-size: 0.95rem; }
+.guide-page li { margin: 0 0 0.45rem; }
+.guide-page strong { color: var(--ink); }
+.guide-page table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 0 0 0.75rem; }
+.guide-page th, .guide-page td { text-align: left; padding: 0.45rem 0.5rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.guide-page th { color: var(--ink); font-weight: 600; }
+.guide-page td { color: var(--muted); }
